@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f2a">
+
+  <title>Hotel Karanth | Restaurant</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf0;
+      color: #26382b;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #173f2a;
+      color: white;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #f6c76b;
+    }
+
+    .hero {
+      min-height: 420px;
+      padding: 65px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 55px);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #e5a83b;
+      color: #173f2a;
+      padding: 13px 23px;
+      margin: 5px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background: #f6c76b;
+    }
+
+    section {
+      padding: 48px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      color: #173f2a;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 25px 0;
+    }
+
+    .filter-btn {
+      border: 1px solid #173f2a;
+      color: #173f2a;
+      background: white;
+      padding: 10px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #173f2a;
+      color: white;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .dish {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 3px 12px #00000012;
+      border: 1px solid #eee5d5;
+    }
+
+    .dish-emoji {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    .dish h3 {
+      color: #173f2a;
+      margin-bottom: 5px;
+    }
+
+    .dish p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .price {
+      color: #a15b14;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .booking-section {
+      background: #edf3e9;
+    }
+
+    .booking-card {
+      max-width: 650px;
+      margin: 25px auto 0;
+      padding: 25px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 18px #00000010;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font: inherit;
+      background: white;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .whatsapp-btn {
+      grid-column: 1 / -1;
+      background: #25d366;
+      color: #083b20;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1fbd5a;
+    }
+
+    .booking-note {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .about {
+      text-align: center;
+      max-width: 750px;
+      margin: auto;
+    }
+
+    footer {
+      background: #173f2a;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .creator {
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 1px solid #ffffff40;
+      font-size: 15px;
+      color: #f6c76b;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 550px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full,
+      .whatsapp-btn {
+        grid-column: auto;
+      }
+
+      .booking-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🍽️ Hotel Karanth</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#booking">Book a Table</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section class="hero" id="home">
+    <h1>Welcome to Hotel Karanth</h1>
+    <p>Good Food. Great Taste. Beautiful Memories. ❤️</p>
+
+    <a href="#menu" class="btn">Explore Our Menu 🍴</a>
+    <a href="#booking" class="btn">📅 Reserve Your Table</a>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <h2 class="section-title">Our Delicious Menu 🍴</h2>
+
+    <p class="section-subtitle">
+      Discover delicious flavours made with love.
+    </p>
+
+    <div class="filters">
+      <button type="button" class="filter-btn active"
+        data-category="all">All Menus</button>
+
+      <button type="button" class="filter-btn"
+        data-category="south">South Indian</button>
+
+      <button type="button" class="filter-btn"
+        data-category="north">North Indian</button>
+
+      <button type="button" class="filter-btn"
+        data-category="mexican">Mexican</button>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="dish" data-category="south">
+        <div class="dish-emoji">🥞</div>
+        <h3>Masala Dosa</h3>
+        <p>Crispy dosa with potato masala.</p>
+        <div class="price">₹90</div>
+      </div>
+
+      <div class="dish" data-category="south">
+        <div class="dish-emoji">🍚</div>
+        <h3>Idli Sambar</h3>
+        <p>Soft idlis served with delicious sambar.</p>
+        <div class="price">₹60</div>
+      </div>
+
+      <div class="dish" data-category="south">
+        <div class="dish-emoji">🍛</div>
+        <h3>South Indian Meals</h3>
+        <p>A traditional and satisfying meal.</p>
+        <div class="price">₹100</div>
+      </div>
+
+      <div class="dish" data-category="north">
+        <div class="dish-emoji">🫓</div>
+        <h3>Paneer Butter Masala</h3>
+        <p>Paneer in creamy tomato gravy.</p>
+        <div class="price">₹100</div>
+      </div>
+
+      <div class="dish" data-category="north">
+        <div class="dish-emoji">🍞</div>
+        <h3>Butter Naan</h3>
+        <p>Soft naan brushed with butter.</p>
+        <div class="price">₹45</div>
+      </div>
+
+      <div class="dish" data-category="north">
+        <div class="dish-emoji">🍚</div>
+        <h3>Veg Biryani</h3>
+        <p>Fragrant rice with aromatic spices.</p>
+        <div class="price">₹80</div>
+      </div>
+
+      <div class="dish" data-category="mexican">
+        <div class="dish-emoji">🌮</div>
+        <h3>Veg Tacos</h3>
+        <p>Tortillas with delicious vegetable filling.</p>
+        <div class="price">₹60</div>
+      </div>
+
+      <div class="dish" data-category="mexican">
+        <div class="dish-emoji">🌯</div>
+        <h3>Bean Burrito</h3>
+        <p>A hearty wrap with beans and vegetables.</p>
+        <div class="price">₹90</div>
+      </div>
+
+      <div class="dish" data-category="mexican">
+        <div class="dish-emoji">🧀</div>
+        <h3>Cheese Quesadilla</h3>
+        <p>Grilled tortilla filled with melted cheese.</p>
+        <div class="price">₹80</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TABLE BOOKING -->
+  <section class="booking-section" id="booking">
+    <h2 class="section-title">📅 Book Your Table</h2>
+
+    <p class="section-subtitle">
+      Planning a meal with family or friends?
+      Reserve your table through WhatsApp!
+    </p>
+
+    <div class="booking-card">
+      <form id="bookingForm" class="booking-form">
+
+        <div class="form-group">
+          <label for="customerName">Your Name *</label>
+          <input type="text" id="customerName"
+            placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="customerPhone">Your Phone Number *</label>
+          <input type="tel" id="customerPhone"
+            placeholder="10-digit mobile number"
+            pattern="[0-9]{10}" maxlength="10"
+            inputmode="numeric" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingDate">Booking Date *</label>
+          <input type="date" id="bookingDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingTime">Booking Time *</label>
+          <select id="bookingTime" required>
+            <option value="">Select time</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM</option>
+            <option>01:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+            <option>04:00 PM</option>
+            <option>05:00 PM</option>
+            <option>06:00 PM</option>
+            <option>07:00 PM</option>
+            <option>08:00 PM</option>
+            <option>09:00 PM</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label for="guests">Number of Guests *</label>
+          <select id="guests" required>
+            <option value="">Select guests</option>
+            <option value="1">1 guest</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+            <option value="7">7 guests</option>
+            <option value="8">8 guests</option>
+            <option value="9">9 guests</option>
+            <option value="10">10 guests</option>
+            <option value="More than 10">More than 10 guests</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label for="requests">Special Requests (Optional)</label>
+          <textarea id="requests"
+            placeholder="Birthday celebration, seating preference, etc."></textarea>
+        </div>
+
+        <button type="submit" class="whatsapp-btn">
+          💚 Book a Table on WhatsApp
+        </button>
+
+      </form>
+
+      <p class="booking-note">
+        Your booking details will be prepared in WhatsApp.
+        Please send the message to submit your request.
+        Your reservation is confirmed only after the hotel replies.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about">
+      <h2 class="section-title">About Hotel Karanth ❤️</h2>
+
+      <p>
+        Welcome to Hotel Karanth, where every dish brings people together.
+        Enjoy delicious South Indian, North Indian and Mexican favourites
+        in a warm and welcoming atmosphere. We look forward to serving you!
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>🍽️ <strong>Hotel Karanth</strong></p>
+    <p>Good Food. Great Taste. Beautiful Memories.</p>
+    <p>© 2026 Hotel Karanth. All rights reserved.</p>
+    <p class="creator">Created by Amrutha Karanth ❤️</p>
+  </footer>
+
+  <script>
+    // MENU CATEGORY FILTERS
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const dishes = document.querySelectorAll(".dish");
+
+    filterButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        const category = button.dataset.category;
+
+        filterButtons.forEach(function(item) {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        dishes.forEach(function(dish) {
+          if (
+            category === "all" ||
+            dish.dataset.category === category
+          ) {
+            dish.style.display = "block";
+          } else {
+            dish.style.display = "none";
+          }
+        });
+      });
+    });
+
+    // SET TODAY AS THE EARLIEST BOOKING DATE
+    const dateInput = document.getElementById("bookingDate");
+
+    const today = new Date();
+
+    const localToday = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    dateInput.min = localToday;
+
+    // WHATSAPP TABLE BOOKING
+    document.getElementById("bookingForm").addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+
+        // India country code + WhatsApp number
+        const restaurantWhatsApp = "917406276202";
+
+        const name =
+          document.getElementById("customerName").value.trim();
+
+        const phone =
+          document.getElementById("customerPhone").value.trim();
+
+        const date = dateInput.value;
+
+        const time =
+          document.getElementById("bookingTime").value;
+
+        const guests =
+          document.getElementById("guests").value;
+
+        const requests =
+          document.getElementById("requests").value.trim() || "None";
+
+        const message =
+          "Hello Hotel Karanth! I would like to book a table.\n\n" +
+          "Name: " + name + "\n" +
+          "Customer phone: " + phone + "\n" +
+          "Date: " + date + "\n" +
+          "Time: " + time + "\n" +
+          "Number of guests: " + guests + "\n" +
+          "Special requests: " + requests + "\n\n" +
+          "Please confirm my reservation. Thank you!";
+
+        const whatsappURL =
+          "https://wa.me/" + restaurantWhatsApp +
+          "?text=" + encodeURIComponent(message);
+
+        window.open(whatsappURL, "_blank");
+      }
+    );
+  </script>
+
+</body>
+          </html>
+          
